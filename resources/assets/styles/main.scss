@@ -1,25 +1,44 @@
-@import "common/variables";
+// Configuration variables and settings
+
+@import "~bourbon-neat/core/neat";
+@import "helpers/config";
+
+@import "helpers/bem";
+@import "helpers/library";
+@import "helpers/normalize";
 
 /** Import everything from autoload */
 @import "./autoload/**/*";
 
 /**
- * Import npm dependencies
+ * Import dependencies
  *
  * Prefix your imports with `~` to grab from node_modules/
  * @see https://github.com/webpack-contrib/sass-loader#imports
  */
 // @import "~some-node-module";
+// @import "~slick-carousel/slick/slick.css";
+// @import "~remodal/dist/remodal.css";
 
-/** Import theme styles */
-@import "common/global";
-@import "components/buttons";
-@import "components/comments";
-@import "components/forms";
-@import "components/wp-classes";
-@import "layouts/header";
-@import "layouts/sidebar";
-@import "layouts/footer";
-@import "layouts/pages";
-@import "layouts/posts";
-@import "layouts/tinymce";
+// Silent Classes
+@import "helpers/silent";
+
+// Elements
+@import "elements/spacing";
+@import 'elements/colours';
+@import 'elements/forms';
+@import "elements/grid";
+@import 'elements/type';
+@import "elements/global";
+@import 'elements/buttons';
+@import 'elements/images';
+@import 'elements/js';
+@import 'elements/animation';
+
+// Views
+@import "views/404";
+@import "views/default";
+@import "views/home";
+
+//@import "~remodal/dist/remodal-default-theme.css";
+//@import "~slick-carousel/slick/slick-theme.css";

@@ -1,0 +1,162 @@
+$neat-grid: (
+  columns: 12,
+  gutter: 15px,
+  direction: ltr,
+);
+
+$tablet: (
+  columns: 12,
+  gutter: 15px,
+  media: $screen-xs,
+  direction: ltr,
+);
+
+$smdesktop: (
+  columns: 12,
+  gutter: 24px,
+  media: $screen-sm,
+  direction: ltr,
+);
+
+$mddesktop: (
+  columns: 12,
+  gutter: 24px,
+  media: $screen-md,
+  direction: ltr,
+);
+
+$lgdesktop: (
+  columns: 12,
+  gutter: 24px,
+  media: $screen-lg,
+  direction: ltr,
+);
+
+$xldesktop: (
+  columns: 12,
+  gutter: 24px,
+  media: $screen-xlg,
+  direction: ltr,
+);
+
+$prompts: (
+  columns: 4,
+  gutter: 0,
+  media: $screen-sm,
+  direction: ltr,
+);
+
+$lgprompts: (
+  columns: 4,
+  gutter: 0,
+  media: $screen-lg,
+  direction: ltr,
+);
+//Here for reference
+
+// $screen-xs:                  480px !default;
+
+// // Small screen / tablet
+// $screen-sm:                  768px !default;
+
+// // Medium screen / desktop
+// $screen-md:                  992px !default;
+
+// // Large screen / wide desktop
+// $screen-lg:                  1230px !default;
+
+// // Extra Large screen / wide desktop
+// $screen-xlg:                  1700px !default;
+
+$site-max-width: 1600px;
+$site-padding: 40px;
+
+.container {
+  @include grid-container;
+  max-width: $site-max-width;
+  margin:0 auto;
+  &--main-menu{
+    max-width: 1250px;
+  }
+}
+
+#main{
+  @include grid-container;
+  //max-width:calc(#{$site-max-width});
+  min-height: 100%;
+  margin: 0 auto;
+  background: color(white);
+}
+
+.container--full-width{
+  padding:0px;
+  //max-width:$site-max-width;
+  overflow:hidden;
+}
+.container--break-width{
+  padding:0px;
+  //width:100vw;
+  //overflow:hidden;
+}
+.container--locked-width{
+  max-width: $site-max-width;
+  margin:0 auto;
+  .block-50, .block-100{
+    max-height:calc((#{$site-max-width} / 2) - (#{map-get($smdesktop, gutter)} * 3));
+  }
+}
+
+.grid-collapse{
+	@include grid-collapse();
+}
+
+//Row
+.row {
+  @include clearfix;
+}
+
+//Columns
+@for $i from 1 through 12 {
+  .column-#{$i} {
+    @include grid-column(12);
+    @include grid-media($smdesktop) {
+      @include grid-column($i);
+    }
+  }
+}
+
+//Push Columns Left
+@for $i from 1 through 12 {
+  .left-#{$i}{
+    @include grid-media($smdesktop){
+      @include grid-push(-$i);
+    }
+  }
+}
+
+//Push Columns Right
+@for $i from 1 through 12 {
+  .right-#{$i}{
+    @include grid-media($smdesktop){
+      @include grid-push($i);
+    }
+  }
+}
+
+//Shift Columns Right
+@for $i from 1 through 12 {
+  .shift-right-#{$i}{
+    @include grid-media($smdesktop){
+      @include grid-shift($i);
+    }
+  }
+}
+
+//Shift Columns Left
+@for $i from 1 through 12 {
+  .shift-left-#{$i}{
+    @include grid-media($smdesktop){
+      @include grid-shift(-$i);
+    }
+  }
+}

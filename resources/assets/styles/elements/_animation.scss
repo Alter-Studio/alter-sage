@@ -1,0 +1,18 @@
+//Animation Styles
+
+@include b('page-header'){
+	@include e('svg-anim'){
+		@include m('page-contact'){
+			max-width: 60%;
+			margin-left:20%;
+			@include grid-media($smdesktop){
+				margin-left:0px;
+			}
+		}
+		@include m('page-company'){
+			max-width: 80%;
+    		margin-left: 10%;
+			padding: 10% 0;
+		}
+	}
+}

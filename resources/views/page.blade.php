@@ -2,6 +2,6 @@
 
 @section('content')
   <div class="container">
-  	OTHER Page
+  	Other Page
   </div>
 @endsection

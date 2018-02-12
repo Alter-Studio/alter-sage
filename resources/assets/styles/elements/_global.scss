@@ -1,0 +1,161 @@
+/** Global **/
+
+*{
+  -webkit-font-smoothing: antialiased;
+  //font-family: $body-font-family;
+}
+
+//No animations on load
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
+
+.overscroll{
+  height: 100vh;
+  width: 100%;
+  top: -100vh;
+  background: color(aopen);
+  position: fixed;
+  z-index: 9999;
+}
+
+// Overshoot Colour
+body{
+  &:after{
+    content: '';
+    width: 99999px;
+    height: 9999999px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: color(aopen);
+    z-index: -1;
+  }
+  &.menu-open{
+    overflow:hidden;
+  }
+}
+
+html{
+  background: color(aopen);
+  height: 100%;
+}
+
+//Defaults
+body{
+	margin: 0px;
+	min-height: 100%;
+  background: color(white);
+}
+
+#main{
+  padding-top: 60px;
+  @include grid-media($smdesktop){
+    padding-top: 80px;
+  }
+}
+
+p, h1, h2, h3, h4, h5{
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration: none;
+  color: color(aopen);
+  &.inherit{
+    color:inherit;
+  }
+}
+
+//Dividers
+hr{
+  //max-width: $site-max-width;
+  width: 100%;
+  margin:0 auto;
+  border-color:color(raincloud);
+  border-style:solid;
+  border-bottom: none;
+  margin-bottom:-1px;
+  // max-width: 99%;
+  border-width: 0px;
+  border-top: 1px solid color(raincloud);
+  height: 1px;
+  &.hr-margin-bottom{
+    margin-bottom:#{map-get($neat-grid, gutter)};
+    @include grid-media($smdesktop){
+      margin-bottom:#{map-get($smdesktop, gutter)};
+    }
+  }
+}
+
+// Lists
+ul{
+  list-style-type: none;
+  padding:0;
+  margin:0;
+}
+.block-50{
+  li{
+    padding-left: 2em;
+    text-indent: -.7em;
+    // @include spacing(margin-bottom, $green-spacing);
+    margin-bottom:1.6em;
+    &:last-child{
+      margin-bottom:0px;
+    }
+    line-height:1.4em;
+  }
+
+  li::before {
+    content: "";
+    display: inline-block;
+    border-radius: 1em;
+    border:1px solid color(aopen);
+    height:.6em;
+    width:.6em;
+    margin-left:-2em;
+    margin-right:2em;
+    transform:rotate(360deg);
+    @include grid-media($smdesktop){
+      margin-left:-2em;
+      margin-right:2em;
+    }
+  }
+}
+
+//Logo
+
+@include b('logo'){
+  @include m('ratio'){
+    max-width: 135px;
+  }
+}
+
+//Mobile show / hide tool
+@include b('hidden'){
+ 	@include m('mobile'){
+ 		display: none;
+		@include grid-media($smdesktop){
+			display: block;
+		}
+ 	}
+ 	@include m('desktop'){
+		display: block;
+		@include grid-media($smdesktop){
+			display: none;
+		}
+ 	}
+ }
+
+@include b('mist-wrap'){
+  background: color(mist);
+  width:100%;
+  @include clearfix;
+  @include m('product'){
+    padding-bottom: 30px;
+  }
+}

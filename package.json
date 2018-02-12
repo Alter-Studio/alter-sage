@@ -25,7 +25,28 @@
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
+      "indentation": null,
+      "max-empty-lines": null,
+      "block-opening-brace-space-before": null,
+      "at-rule-empty-line-before": null,
+      "declaration-colon-space-after": null,
+      "length-zero-no-unit": null,
+      "font-family-no-duplicate-names": null,
+      "block-no-empty": null,
+      "no-eol-whitespace": null,
+      "selector-list-comma-newline-after": null,
+      "number-leading-zero": null,
+      "declaration-empty-line-before": null,
+      "color-hex-length": null,
+      "selector-pseudo-element-colon-notation": null,
+      "rule-empty-line-before": null,
+      "declaration-block-trailing-semicolon": null,
+      "block-closing-brace-newline-after": null,
+      "no-missing-end-of-source-newline": null,
+      "declaration-colon-newline-after": null,
       "no-empty-source": null,
+      "no-duplicate-selectors": null,
+      "no-descending-specificity": null,
       "at-rule-no-unknown": [
         true,
         {
@@ -44,7 +65,8 @@
             "include",
             "content",
             "return",
-            "function"
+            "function",
+            "indentation"
           ]
         }
       ]

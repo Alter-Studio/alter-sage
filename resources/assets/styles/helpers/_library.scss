@@ -1,0 +1,315 @@
+/**
+ *  Library
+ *
+ *  Contains mixins and functions.
+ */
+
+
+
+/**
+ *  Layout
+ */
+
+// Margins and positioning helper function
+@function spacer($val: 1) {
+  @return $spacer * $val + 0px;
+}
+
+
+/**
+ *  Settings
+ */
+
+
+// Master config function
+@function config($map, $key) {
+  @return map-get($map, $key);
+}
+
+// A simple function to retrieve a color from the array; adapted from http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+@function color($request) {
+  @return config($_color, $request);
+}
+
+// Same thing for theme metadata
+@function metadata($request) {
+  @return config($_metadata, $request);
+}
+
+
+//Custom Mixins
+
+@mixin transition($type, $time) {
+    -webkit-transition: $type $time ease-in-out;
+    -moz-transition: $type $time ease-in-out;
+    -o-transition: $type $time ease-in-out;
+    transition: $type $time ease-in-out;
+}
+
+
+/**
+ *  Center element
+ *  NB: parent element must have position: relative;
+ *
+ *  @variables: xy, x, y
+ *  Default: xy
+ */
+
+@mixin center($xy:xy) {
+  position:absolute;
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%) translateY(-50%);
+    //@include transform(translateX(-50%) translateY(-50%));
+  }
+  @else if $xy == x {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    //@include transform(translateX(-50%));
+  }
+  @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+    //@include transform(translateY(-50%));
+  }
+}
+
+/**
+ *  Border Radius
+ *
+ *  @variables: $radius (px, em, rem value)
+ */
+
+@mixin border-radius($radius:.25em) {
+  border-radius: $radius;
+}
+
+/**
+ *  Font Smoothing
+ */
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/**
+ *  Font size map by Jonathan Suh
+ *  https://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/
+ */
+
+
+//Set Breakpoints
+$breakpoints: (
+  x-small: $screen-xs,
+  small: $screen-sm,
+  medium: $screen-md,
+  large: $screen-lg,
+  x-large: $screen-xlg
+);
+
+//Set Font sizes
+@mixin font-size($fs-map, $fs-breakpoints: $breakpoints) {
+ @each $fs-breakpoint, $fs-font-size in $fs-map {
+   @if $fs-breakpoint == null {
+     @include make-font-size($fs-font-size);
+   }
+   @else {
+     // If $fs-font-size is a key that exists in
+     // $fs-breakpoints, use the value
+     @if map-has-key($fs-breakpoints, $fs-breakpoint) {
+       $fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
+     }
+     @media screen and (min-width: $fs-breakpoint) {
+       @include make-font-size($fs-font-size);
+     }
+   }
+ }
+}
+
+// Utility function for mixin font-size
+@mixin make-font-size($fs-font-size) {
+ // If $fs-font-size is a list, include
+ // both font-size and line-height
+ @if type-of($fs-font-size) == "list" {
+   font-size: nth($fs-font-size, 1);
+   @if (length($fs-font-size) > 1) {
+     line-height: nth($fs-font-size, 2);
+   }
+ }
+ @else {
+   font-size: $fs-font-size;
+ }
+}
+
+
+//Set Spacing sizes
+@mixin spacing($attribute, $s-map, $s-breakpoints: $breakpoints) {
+ @each $s-breakpoint, $s-spacing-size in $s-map {
+   @if $s-breakpoint == null {
+     @include make-spacing($s-spacing-size, $attribute);
+   }
+   @else {
+     // If $s-font-size is a key that exists in
+     // $s-breakpoints, use the value
+     @if map-has-key($s-breakpoints, $s-breakpoint) {
+       $s-breakpoint: map-get($s-breakpoints, $s-breakpoint);
+     }
+     @media screen and (min-width: $s-breakpoint) {
+       @include make-spacing($s-spacing-size, $attribute);
+     }
+   }
+ }
+}
+
+// Utility function for mixin spacing
+@mixin make-spacing($s-spacing-size, $attribute) {
+
+  // If conditions for selecting attribute
+  #{$attribute}: $s-spacing-size;
+}
+
+
+
+/**
+ *  Media Query Mixins.
+ *  Sorted by Minimum, Maximum and Between
+ */
+
+/**
+ *  Minimums
+ * eg.
+ * @include minimum(tablet){ @content };
+ * css will be active on tablet size and beyond
+ *
+ * @variables: tablet, small-desktop, desktop
+ */
+
+@mixin minimum($canvas) {
+  @if $canvas == tablet {
+    @media (min-width: #{$screen-xs}) {
+    @content;
+  }
+  }
+  @else if $canvas == tablet{
+    @media (min-width: #{$screen-sm}){
+      @content;
+    }
+  }
+  @else if $canvas == small-desktop{
+    @media (min-width: #{$screen-sm}){
+      @content;
+    }
+  }
+    @else if $canvas == med-desktop{
+    @media (min-width: #{$screen-md}){
+      @content;
+    }
+  }
+  @else if $canvas == lge-desktop{
+    @media (min-width: #{$screen-lg}){
+      @content;
+    }
+  }
+  @else if $canvas == desktop {
+    @media (min-width: #{$screen-desktop}) {
+    @content;
+  }
+  }
+}
+
+
+/**
+ *  Maximums
+ * eg.
+ * @include maximum(tablet){ @content };
+ * css will be active on tablet size size and beyond
+ *
+ * @variables: mobile, tablet, small-desktop, desktop
+ */
+
+@mixin maximum($canvas) {
+  @if $canvas == mobile {
+    @media (max-width: #{$screen-xs-max}) {
+    @content;
+  }
+  }
+  @else if $canvas == tablet {
+    @media (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+  }
+  @else if $canvas == small-desktop{
+    @media (max-width: #{$screen-sm-max}){
+      @content;
+    }
+  }
+  @else if $canvas == med-desktop{
+    @media (max-width: #{$screen-md-max}){
+      @content;
+    }
+  }
+    @else if $canvas == lge-desktop{
+    @media (max-width: #{$screen-lg-max}){
+      @content;
+    }
+  }
+  @else if $canvas == desktop {
+    @media (max-width: #{$screen-md-max}) {
+    @content;
+  }
+  }
+}
+
+
+/**
+ *  Betweens
+ * eg.
+ * @include between(tablet,desktop){ @content };
+ * css will be active between tablet and desktop breakpoints.
+ *
+ * @variables: tablet, desktop
+ */
+
+@mixin between($canvas-start, $canvas-end) {
+
+  //Tablet Start
+  @if $canvas-start == tablet && $canvas-end == desktop {
+    @media (min-width: #{$screen-xs}) and (max-width: #{$screen-desktop - 1px}) {
+        @content;
+    }
+  }
+}
+
+
+/// Clearfix (https://github.com/thoughtbot/bourbon/blob/master/core/bourbon/library/_clearfix.scss)
+
+/// Provides an easy way to include a clearfix for containing floats.
+///
+/// @link https://goo.gl/yP5hiZ
+///
+/// @example scss
+///   .element {
+///     @include clearfix;
+///   }
+///
+///   // CSS Output
+///   .element::after {
+///     clear: both;
+///     content: "";
+///     display: block;
+///   }
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
