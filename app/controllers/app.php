@@ -30,4 +30,10 @@ class App extends Controller
         }
         return get_the_title();
     }
+    
+    public static function getTemplate()
+    {
+        global $template;
+        return basename($template, '.blade.php');
+    }
 }

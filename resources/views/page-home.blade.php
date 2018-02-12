@@ -1,7 +1,8 @@
+<?php /* Template Name: Home */ ?>
 @extends('layouts.app')
 
 @section('content')
   <div class="container">
-  	OTHER Page
+  	Home Page
   </div>
 @endsection

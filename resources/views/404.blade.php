@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
-
   @if (!have_posts())
-    <div class="alert alert-warning">
-      {{ __('Sorry, but the page you were trying to view does not exist.', 'sage') }}
-    </div>
-    {!! get_search_form(false) !!}
+	<div class="error">
+	  <div class="container">
+		<div class="error-message">
+			<p class="large">@trans('not_found_message')</p>
+			<a class="zoom left large" href="{{ home_url() }}">@trans('not_found_link_text')</a>
+		</div>
+	  </div>
+	</div>
   @endif
 @endsection
