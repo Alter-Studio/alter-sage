@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const config = require('./config');
 
@@ -112,6 +113,14 @@ let webpackConfig = {
           name: `${config.cacheBusting}.[ext]`,
         },
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        options: {
+          extract: true,
+          spriteFilename: 'dist/images/sprite.svg',
+        },
+      },
     ],
   },
   resolve: {
@@ -128,6 +137,7 @@ let webpackConfig = {
     jquery: 'jQuery',
   },
   plugins: [
+    new SpriteLoaderPlugin(),
     new CleanPlugin([config.paths.dist], {
       root: config.paths.root,
       verbose: false,

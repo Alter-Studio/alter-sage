@@ -88,6 +88,8 @@
   },
   "devDependencies": {
     "autoprefixer": "~7.2.5",
+    "barba.js": "^1.0.0",
+    "bourbon-neat": "2.1.0",
     "browser-sync": "~2.23.6",
     "browsersync-webpack-plugin": "^0.6.0",
     "bs-html-injector": "~3.0",
@@ -106,6 +108,7 @@
     "imagemin-mozjpeg": "~7.0.0",
     "imagemin-webpack-plugin": "~2.0.0",
     "import-glob": "~1.5",
+    "lazysizes": "^4.0.1",
     "node-sass": "~4.7.2",
     "postcss-loader": "~2.1.0",
     "postcss-safe-parser": "~3.0",
@@ -122,14 +125,12 @@
     "webpack-dev-middleware": "~2.0.4",
     "webpack-hot-middleware": "~2.21.0",
     "webpack-merge": "~4.1.1",
-    "yargs": "~11.0.0",
-    "barba.js": "^1.0.0",
-    "bourbon-neat": "2.1.0",
-    "lazysizes": "^4.0.1"
+    "yargs": "~11.0.0"
   },
   "dependencies": {
     "bootstrap": "v4.0.0",
     "jquery": "^3.3.1",
-    "popper.js": "^1.12.9"
+    "popper.js": "^1.12.9",
+    "svg-sprite-loader": "^3.6.2"
   }
 }
