@@ -7,30 +7,16 @@ img[data-sizes="auto"] {
   display: block;
   width: 100%;
 }
-.ratio--rec, .ratio--squ, .ratio--wid{
+
+@include b('img'){
+  @include m('responsive'){
     position: relative;
-    width:100%;
-    overflow:hidden;
-    .lazyload {
-    	opacity: 0;
+    img{
+      position: absolute;
     }
-    .lazyloading {
-    	opacity: 1;
-    	transition: opacity 300ms;
-    	// background: #f7f7f7;
-      min-height:100%;
-      background: color(mist);
-    }
-    .lazyloaded{
-      // background: color(white);
-      .product-tile & {
-        background: color(mist);
-      }
-      .related-products & {
-        background: color(mist);
-      }
-    }
+  }
 }
+
 img.lazyloading {
 		opacity: 0;
 		transition: opacity 400ms;
@@ -38,47 +24,3 @@ img.lazyloading {
 img.lazyloaded {
 		opacity: 1;
 	}
-.ratio--rec:after{
-    content: '';
-    display: block;
-    height: 0;
-    width: 100%;
-    // 16:10 = 62.5% = calc(10 / 16 * 100%)
-    padding-bottom: 62.5%;
-}
-.ratio--squ:after{
-    content: '';
-    display: block;
-    height: 0;
-    width: 100%;
-    padding-bottom: 100%;
-}
-.ratio--wid:after{
-    content: '';
-    display: block;
-    height: 0;
-    width: 100%;
-    padding-bottom: 50%;
-}
-.ratio--rec > *, .ratio--squ > *, .ratio--wid > *,{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    //height: 100%;
-    display: block;
-}
-
-.ratio--mini{
-  width:200px;
-  margin:0 auto;
-}
-
-.ratio--rec .lazyautosizes, .ratio--squ .lazyautosizes, .ratio--wid .lazyautosizes, .ratio--rec .lazyloading, .ratio--squ .lazyloading, .ratio--wid .lazyloading {
-		opacity: 0;
-		transition: opacity 400ms;
-	}
-
-.ratio--rec img.lazyloaded, .ratio--squ img.lazyloaded, .ratio--wid img.lazyloaded {
-	opacity: 1;
-}
