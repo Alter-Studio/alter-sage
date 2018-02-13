@@ -1,3 +1,8 @@
+/**
+ *  Lazysizes Image Ratios
+ *  For use with images that are not automatically determined via the filter.
+ */
+
 img[data-sizes="auto"] {
   display: block;
   width: 100%;

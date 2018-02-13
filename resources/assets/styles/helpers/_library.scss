@@ -5,7 +5,6 @@
  */
 
 
-
 /**
  *  Layout
  */
@@ -148,7 +147,6 @@ $breakpoints: (
  }
 }
 
-
 //Set Spacing sizes
 @mixin spacing($attribute, $s-map, $s-breakpoints: $breakpoints) {
  @each $s-breakpoint, $s-spacing-size in $s-map {
@@ -176,10 +174,11 @@ $breakpoints: (
 }
 
 
-
 /**
  *  Media Query Mixins.
  *  Sorted by Minimum, Maximum and Between
+ *
+ *  DEPRICATED: Use grid media instead - https://neat.bourbon.io/docs/latest/#custom-grids
  */
 
 /**

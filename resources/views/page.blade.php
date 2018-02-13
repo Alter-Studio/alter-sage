@@ -2,6 +2,6 @@
 
 @section('content')
   <div class="container">
-  	Other Page
+	{{ get_the_title() }}
   </div>
 @endsection

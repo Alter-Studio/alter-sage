@@ -68,3 +68,22 @@ add_filter('comments_template', function ($comments_template) {
     );
     return template_path(locate_template(["views/{$comments_template}", $comments_template]) ?: $comments_template);
 });
+
+/**
+ * Return ratios with ACF images
+ */
+add_filter( 'acf/format_value/type=image', function ( $value, $post_id, $field){
+    //Only alter array
+    if ($field['return_format'] === 'array') {
+        $id = $value['id'];
+        if( $sizes = get_intermediate_image_sizes() ) {
+            foreach( $sizes as $size ) {                
+                // url
+                $src = wp_get_attachment_image_src( $id, $size );
+                // Add ratio
+                $value['sizes'][ $size . '-ratio' ] = ($value['sizes'][ $size . '-height' ] / $value['sizes'][ $size . '-width' ]) * 100;
+            }
+        }
+    }
+    return $value;
+}, 20, 3 );

@@ -1,3 +1,8 @@
+/**
+ *  Grid Maps
+ *  https://neat.bourbon.io/docs/latest/#custom-grids
+ */
+
 $neat-grid: (
   columns: 12,
   gutter: 15px,
@@ -52,6 +57,7 @@ $lgprompts: (
   media: $screen-lg,
   direction: ltr,
 );
+
 //Here for reference
 
 // $screen-xs:                  480px !default;
@@ -80,30 +86,16 @@ $site-padding: 40px;
   }
 }
 
+.container--full-width{
+  padding:0px;
+  overflow:hidden;
+}
+
 #main{
   @include grid-container;
-  //max-width:calc(#{$site-max-width});
   min-height: 100%;
   margin: 0 auto;
   background: color(white);
-}
-
-.container--full-width{
-  padding:0px;
-  //max-width:$site-max-width;
-  overflow:hidden;
-}
-.container--break-width{
-  padding:0px;
-  //width:100vw;
-  //overflow:hidden;
-}
-.container--locked-width{
-  max-width: $site-max-width;
-  margin:0 auto;
-  .block-50, .block-100{
-    max-height:calc((#{$site-max-width} / 2) - (#{map-get($smdesktop, gutter)} * 3));
-  }
 }
 
 .grid-collapse{

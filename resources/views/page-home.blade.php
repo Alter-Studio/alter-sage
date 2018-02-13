@@ -3,6 +3,6 @@
 
 @section('content')
   <div class="container">
-  	Home Page
+	{{ get_the_title() }}
   </div>
 @endsection

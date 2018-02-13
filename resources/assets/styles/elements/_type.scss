@@ -2,8 +2,7 @@
  *  Typography
  */
 
-
-//## Input external fonts here
+//## Define font-face fonts here
 
 // @font-face {
 // 	font-family: 'Zurich';
@@ -26,8 +25,11 @@
 // 	font-style: normal;
 // }
 
+
+//Define font families
 $heading-font-family: "Zurich", Helvetica, sans-serif;
 $body-font-family: "Zurich", Helvetica, sans-serif;
+
 
 /**
  *  Font weight variables
@@ -36,13 +38,13 @@ $bold: 700;
 $normal: 400;
 $light: 300;
 
+
 /**
  *  Font sizes
  *
  *	Map options: null, x-small, small, medium, large, x-large
  *
  */
-
 
 $base-font-sizes: (
   null  : (16px, 1.61),
@@ -132,17 +134,13 @@ $h5-font-sizes: (
 h1, h2, h3, h4, h5{
   font-family: $heading-font-family;
 	font-weight: $normal;
-	color:color(deepmarine);
+  font-variant-ligatures: none;
 }
 
 body, p{
 	font-family: $body-font-family;
 	font-weight: $light;
-	color:color(deepmarine);
-}
-
-h1, h2, h3, h4, h5{
-  font-variant-ligatures: none;
+  @include font-size($base-font-sizes);
 }
 
 a{
@@ -152,35 +150,30 @@ a{
 .mega{
 	@include font-size($mega-font-sizes);
 	font-weight: $normal;
-	color:color(deepmarine);
 	letter-spacing:0.02em;
 }
 
 .medium{
 	@include font-size($medium-font-sizes);
 	font-weight: $light;
-	color:color(deepmarine);
 	letter-spacing:0.02em;
 }
 
 .large{
 	@include font-size($large-font-sizes);
 	font-weight: $light;
-	color:color(deepmarine);
 	letter-spacing:0.02em;
 }
 
 .xlarge{
 	@include font-size($xlarge-font-sizes);
 	font-weight: $normal;
-	color:color(deepmarine);
 	letter-spacing:0.02em;
 }
 
 .smallcaps, {
 	@include font-size($smallcaps-font-sizes);
 	font-weight: $normal;
-	color:color(deepmarine);
 	text-transform: uppercase;
 	letter-spacing:0.08em;
 	line-height:1.422;
@@ -189,21 +182,14 @@ a{
 .base{
   @include font-size($base-font-sizes);
   font-weight: $light;
-  color: color(deepmarine);
 }
 
 .foot-medium{
 	@include font-size($footer-medium-font-sizes);
 	font-weight: $light;
-	color:color(deepmarine);
 	letter-spacing:0.02em;
 }
 
-p{
-  @include font-size($base-font-sizes);
-  font-weight: $light;
-  color:color(deepmarine);
-}
 .capitalize {
     text-transform: capitalize;
 }
