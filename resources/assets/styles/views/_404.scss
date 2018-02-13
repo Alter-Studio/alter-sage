@@ -3,7 +3,6 @@
  */
 
 @include b('error-message'){
-  padding: 30vh 0 35vh;
   @include grid-column(12);
   @include grid-media($smdesktop){
     @include grid-column(4);

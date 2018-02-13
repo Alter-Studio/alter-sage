@@ -1,0 +1,9 @@
+/**
+ *  Footer
+ */
+
+@include b('footer'){
+	@include grid-container;
+	max-width: $site-max-width;
+  	margin:0 auto;
+}

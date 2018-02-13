@@ -1,0 +1,9 @@
+/**
+ *  Header
+ */
+
+@include b('header'){
+	@include grid-container;
+	max-width: $site-max-width;
+  	margin:0 auto;
+}
