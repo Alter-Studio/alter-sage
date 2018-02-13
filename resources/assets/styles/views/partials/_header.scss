@@ -7,3 +7,35 @@
 	max-width: $site-max-width;
   	margin:0 auto;
 }
+
+
+//BEM menu
+@include b('menu'){
+	//Top level item
+	@include e('item'){
+
+		//parent item
+		@include m('parent'){
+			//Active parent item
+			@include m('active'){
+			}
+		}
+		//Active page
+		@include m('active'){
+		}
+		//Active page
+		@include m('ancestor'){
+			@include m('active'){
+			}
+		}
+	}
+	//Subemnu item
+	@include e('submenu'){
+		@include e('item'){
+			color: red;
+		}
+	}
+	//Link
+	@include e('link'){
+	}
+}
