@@ -1,6 +1,7 @@
 const path = require('path');
 const { argv } = require('yargs');
 const merge = require('webpack-merge');
+const glob = require('glob').sync;
 
 const desire = require('./util/desire');
 
@@ -11,7 +12,17 @@ const rootPath = (userConfig.paths && userConfig.paths.root)
   ? userConfig.paths.root
   : process.cwd();
 
+const svgentry = glob(path.join(rootPath, 'resources/assets/svg/*.svg'));
+console.log(svgentry);
+
 const config = merge({
+  "entry": {
+    "main": [
+      path.join(rootPath, 'resources/assets/scripts/main.js'),
+      path.join(rootPath, 'resources/assets/styles/main.scss'),
+    ],
+    sprite: svgentry,
+  },
   open: true,
   copy: 'images/**/*',
   proxyUrl: 'http://localhost:3000',
@@ -19,7 +30,6 @@ const config = merge({
   paths: {
     root: rootPath,
     assets: path.join(rootPath, 'resources/assets'),
-    svg: path.join(rootPath, 'resources/assets/svg'),
     dist: path.join(rootPath, 'dist'),
   },
   enabled: {

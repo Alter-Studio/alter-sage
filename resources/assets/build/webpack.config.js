@@ -115,26 +115,12 @@ let webpackConfig = {
       },
       {
         test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-sprite-loader',
-          },
-          {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                {
-                  esModule: false,
-                  extract: true,
-                  spriteFilename: 'sprite.svg',
-                },
-              ],
-            },
-          },
-        ],
-        include: [
-          config.paths.svg,
-        ],
+        loader: 'svg-sprite-loader',
+        //include: '',
+        options: {
+          extract: true,
+          spriteFilename: 'sprite-[hash:6].svg',
+        },
       },
     ],
   },
