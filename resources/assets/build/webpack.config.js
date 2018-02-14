@@ -115,11 +115,26 @@ let webpackConfig = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: 'dist/images/sprite.svg',
-        },
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+          },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                {
+                  esModule: false,
+                  extract: true,
+                  spriteFilename: 'sprite.svg',
+                },
+              ],
+            },
+          },
+        ],
+        include: [
+          config.paths.svg,
+        ],
       },
     ],
   },
@@ -137,7 +152,6 @@ let webpackConfig = {
     jquery: 'jQuery',
   },
   plugins: [
-    new SpriteLoaderPlugin(),
     new CleanPlugin([config.paths.dist], {
       root: config.paths.root,
       verbose: false,
@@ -186,6 +200,7 @@ let webpackConfig = {
       syntax: 'scss',
     }),
     new FriendlyErrorsWebpackPlugin(),
+    new SpriteLoaderPlugin(),
   ],
 };
 

@@ -19,6 +19,7 @@ const config = merge({
   paths: {
     root: rootPath,
     assets: path.join(rootPath, 'resources/assets'),
+    svg: path.join(rootPath, 'resources/assets/svg'),
     dist: path.join(rootPath, 'dist'),
   },
   enabled: {
