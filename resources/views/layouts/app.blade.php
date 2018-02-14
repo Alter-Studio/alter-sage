@@ -2,6 +2,10 @@
 <html @php(language_attributes())>
   @include('partials.head')
   <body>
+    @php
+      $svg_file = file_get_contents(App\asset_path('sprites.svg'));
+      echo $svg_file;
+    @endphp
     @php(do_action('get_header'))
     @include('partials.header')
     @yield('page-header')

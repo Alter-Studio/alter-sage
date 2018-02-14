@@ -2,4 +2,8 @@
  *  Home
  */
 
- .test{ background: url('../svg/twitter.svg'); }
+@include b('icon'){
+	@include e('twitter'){
+		width: 50px;
+	}
+}

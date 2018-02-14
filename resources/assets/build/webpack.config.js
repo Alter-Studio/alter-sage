@@ -97,23 +97,23 @@ let webpackConfig = {
       {
         test: /\.svg$/,
         loader: 'svg-sprite-loader',
-        //include: '',
         options: {
           extract: true,
-          spriteFilename: 'sprite-[hash:6].svg',
+          spriteFilename: 'sprites.svg',
         },
       },
       {
-        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|ico)$/,
+        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
         include: config.paths.assets,
         loader: 'url',
+        exclude: [config.paths.svg],
         options: {
           limit: 4096,
           name: `[path]${assetsFilenames}.[ext]`,
         },
       },
       {
-        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|ico)$/,
+        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
         include: /node_modules/,
         loader: 'url',
         options: {
