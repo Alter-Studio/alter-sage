@@ -37,7 +37,7 @@ let webpackConfig = {
     publicPath: false,
   },
   module: {
-    rules: [
+    rules: [   
       {
         enforce: 'pre',
         test: /\.js$/,
@@ -95,7 +95,16 @@ let webpackConfig = {
         }),
       },
       {
-        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        //include: '',
+        options: {
+          extract: true,
+          spriteFilename: 'sprite-[hash:6].svg',
+        },
+      },
+      {
+        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|ico)$/,
         include: config.paths.assets,
         loader: 'url',
         options: {
@@ -104,22 +113,13 @@ let webpackConfig = {
         },
       },
       {
-        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
+        test: /\.(ttf|eot|woff2?|png|jpe?g|gif|ico)$/,
         include: /node_modules/,
         loader: 'url',
         options: {
           limit: 4096,
           outputPath: 'vendor/',
           name: `${config.cacheBusting}.[ext]`,
-        },
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        //include: '',
-        options: {
-          extract: true,
-          spriteFilename: 'sprite-[hash:6].svg',
         },
       },
     ],

@@ -13,15 +13,14 @@ const rootPath = (userConfig.paths && userConfig.paths.root)
   : process.cwd();
 
 const svgentry = glob(path.join(rootPath, 'resources/assets/svg/*.svg'));
-console.log(svgentry);
 
 const config = merge({
   "entry": {
+    sprite: svgentry,
     "main": [
       path.join(rootPath, 'resources/assets/scripts/main.js'),
       path.join(rootPath, 'resources/assets/styles/main.scss'),
     ],
-    sprite: svgentry,
   },
   open: true,
   copy: 'images/**/*',
