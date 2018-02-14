@@ -1,3 +1,9 @@
 /**
  *  Home
  */
+
+@include b('icon'){
+	@include m('twitter'){
+		width: 50px;
+	}
+}

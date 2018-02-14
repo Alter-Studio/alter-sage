@@ -397,4 +397,12 @@ add_action('after_setup_theme', function () {
         $output .= "<?php endwhile; endif; ?>";
         return $output;
     });
+    // SVG Directive
+    sage('blade')->compiler()->directive('icon', function ($expression) {
+        $expression = preg_replace('/(\'|&#0*39;)/', '', $expression);
+        $output = '<svg viewBox="0 0 100 100" class="icon icon--' . $expression . '">';
+        $output .= '<use xlink:href="#'.$expression.'"></use>';
+        $output .= '</svg>';
+        return $output;
+    });
 });

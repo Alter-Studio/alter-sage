@@ -1,13 +1,4 @@
 {
-  "entry": {
-    "main": [
-      "./scripts/main.js",
-      "./styles/main.scss"
-    ],
-    "customizer": [
-      "./scripts/customizer.js"
-    ]
-  },
   "publicPath": "/app/themes/sage",
   "devUrl": "http://localhost:8888",
   "proxyUrl": "http://localhost:3000",

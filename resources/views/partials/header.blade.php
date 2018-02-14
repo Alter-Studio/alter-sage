@@ -6,3 +6,17 @@
       @endif
     </nav>
 </header>
+
+<svg viewBox="0 0 100 100" class="icon__twitter">
+   <use xlink:href="#twitter"></use>
+</svg>
+
+@icon('twitter')
+
+{{-- @php
+  $expression = 'twitter';
+  $expression = strtr('twitter', array('(' => '', ')' => ''));
+  echo $expression;
+@endphp --}}
+
+

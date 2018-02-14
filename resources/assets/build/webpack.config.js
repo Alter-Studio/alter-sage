@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyGlobsPlugin = require('copy-globs-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const config = require('./config');
 
@@ -36,7 +37,7 @@ let webpackConfig = {
     publicPath: false,
   },
   module: {
-    rules: [
+    rules: [   
       {
         enforce: 'pre',
         test: /\.js$/,
@@ -94,9 +95,18 @@ let webpackConfig = {
         }),
       },
       {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        options: {
+          extract: true,
+          spriteFilename: 'sprites.svg',
+        },
+      },
+      {
         test: /\.(ttf|eot|woff2?|png|jpe?g|gif|svg|ico)$/,
         include: config.paths.assets,
         loader: 'url',
+        exclude: [config.paths.svg],
         options: {
           limit: 4096,
           name: `[path]${assetsFilenames}.[ext]`,
@@ -176,6 +186,7 @@ let webpackConfig = {
       syntax: 'scss',
     }),
     new FriendlyErrorsWebpackPlugin(),
+    new SpriteLoaderPlugin(),
   ],
 };
 
