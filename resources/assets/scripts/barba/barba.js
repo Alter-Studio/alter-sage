@@ -2,10 +2,10 @@
 import Barba from "barba.js";
 
 //Transitions
-import FadeTransition from "./modules/barbatransitions/fade";
+import FadeTransition from "./transitions/fade";
 
 //Views
-import Home from "./modules/barbaviews/home";
+import Home from "./views/home";
 
 //Init Views
 Home.init();
@@ -84,10 +84,8 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 //   ga('send', 'pageview', window.location.pathname);
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
-    Barba.Pjax.init();
-    Barba.Prefetch.init();
-});
+Barba.Pjax.init();
+Barba.Prefetch.init();
 
 /**
  * Next step, you have to tell Barba to use the new Transition

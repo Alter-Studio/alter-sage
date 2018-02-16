@@ -2,8 +2,12 @@
  *  Icon styles
  */
 
+@include b('sprites'){
+	display: none;
+}
+
 @include b('icon'){
-	@include m('twitter'){
-		width: 50px;
-	}
+    @include m('twitter'){
+        width: 50px;
+    }
 }

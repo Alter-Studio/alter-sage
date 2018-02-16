@@ -6,5 +6,5 @@ import 'lazysizes';
 import "./autoload/**/*"
 
 // import local dependencies
-import "./init";
-import "./barba";
+import "./functions/init";
+import "./barba/barba";
