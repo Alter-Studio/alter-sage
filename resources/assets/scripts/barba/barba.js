@@ -75,13 +75,12 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 
 /* eslint-enable no-unused-vars */
 
-// Currently commented out however this will need to be uncommented for google analytics to work.
-
+//Tag manager dispatcher
 // Barba.Dispatcher.on('initStateChange', function() {
 //   if (typeof ga !== 'function' || Barba.HistoryManager.history.length <= 1) {
 //     return;
 //   }
-//   ga('send', 'pageview', window.location.pathname);
+//   gtag('event', 'page_view', { 'send_to': trackingCode, 'page_path':  window.location.pathname });
 // });
 
 Barba.Pjax.init();
