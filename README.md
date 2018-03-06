@@ -89,6 +89,110 @@ Edit `app/setup.php` to enable or disable theme features, setup navigation menus
 * `yarn run build` — Compile and optimize the files in your assets directory
 * `yarn run build:production` — Compile assets for production
 
+## Directives
+
+All directive additions are located in the setup.php file.
+You can refer to this file for a better understanding of what these directives output.
+
+Basic Fields
+- `@field`
+- `@getField`
+
+```blade
+@field('echo the field')
+```
+
+Repeater and flexible content loop
+- `@fields`
+- `@endFields`
+
+Subfields
+- `@sub`
+- `@getSub`
+- `@hasSub`
+- `@endSub`
+
+```blade
+<ul>
+  @fields('list')
+    @hasSub('title')
+      <li>@sub('title')</li>
+    @endSub
+    <li>@sub('bullet')</li>
+  @endFields
+</ul>
+```
+
+Layouts for flexible content fields
+- `@ifLayout`
+- `@elseLayout`
+- `@endLayout`
+
+```blade
+@fields('flexiblefield')
+  @ifLayout('layoutone')
+  @elseLayout('layouttwo')
+  @endLayout
+@endFields
+```
+
+Conditional statments
+- `@hasField`
+- `@endField`
+
+```blade
+@hasField('thefield')
+<div class="thefield">
+  <p class="large">@field('innerfield')</p>
+</div>
+@endField
+```
+
+Images
+- `@recImg`
+- `@squImg`
+- `@widImg`
+- `@thumbImg`
+- `@squTax`
+
+Subfield Images
+- `@recSub`
+- `@squSub`
+- `@widSub`
+- `@miniSub`
+- `@thumbSub`
+
+```blade
+@recImg('imagefield')
+
+@fields('images')
+  @squSub('subimage')
+@endFields
+```
+
+Gallery
+- `@theGallery`
+
+```blade
+@theGallery('galleryfield')
+```
+
+Icons
+- `@icon`
+
+```blade
+@theGallery('galleryfield')
+```
+
+Translation
+- `@trans`
+
+```blade
+@trans('translation field')
+```
+
+
+
 ## Documentation
 
 * [Sage documentation](https://roots.io/sage/docs/)
