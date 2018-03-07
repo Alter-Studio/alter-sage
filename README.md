@@ -148,6 +148,14 @@ Conditional statments
 @endField
 ```
 
+Responsive Image
+The responsive image directive does not require any css to determine the padding based off the image ratio.
+- `@reponsiveImage`
+
+```blade
+@reponsiveImage('imagefield')
+```
+
 Images
 - `@recImg`
 - `@squImg`
@@ -191,6 +199,27 @@ Translation
 @trans('translation field')
 ```
 
+## Responsive Images & lazysizes
+
+A filter exists to calculate the ratio padding for lazyloading responsive images.
+This is accessable via the returned image array.
+The naming convention to select the ratio {{size}}-ratio.
+
+Example:
+```php
+get_field($expression)['sizes']['small-ratio'];
+get_field($expression)['sizes']['medium-ratio'];
+get_field($expression)['sizes']['large-ratio'];
+```
+
+
+A directive exists to assist echoing images with this.
+
+- `@reponsiveImage`
+
+```blade
+@reponsiveImage('imagefield')
+```
 
 
 ## Documentation

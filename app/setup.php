@@ -236,6 +236,28 @@ add_action('after_setup_theme', function () {
         return "<?php endif; ?>";
     });
 
+
+    /**
+     * Create @reponsiveImage() Blade directive
+     */
+    sage('blade')->compiler()->directive('reponsiveImage', function ($expression) {
+        $expression = strtr($expression, array('(' => '', ')' => ''));
+        //Can probably auto generate src set?
+        //var_dump($expression['sizes']);
+        $output = '<div class="img--responsive" style="padding-bottom:'
+        $output .= "<?php echo get_field($expression)['sizes']['large-ratio'] ?>%"
+        $output .= " >';"
+        $output .= '<img class="lazyload" data-sizes="auto" data-src="';
+        $output .= "<?php echo get_field($expression)['sizes']['large']; ?>";
+        $output .= '" data-srcset="';
+        $output .= "<?php echo get_field($expression)['sizes']['small']; ?> 800w,";
+        $output .= "<?php echo get_field($expression)['sizes']['medium']; ?> 1600w,";
+        $output .= "<?php echo get_field($expression)['sizes']['large']; ?> 1920w,";
+        $output .= '" />';
+        $output .= '</div>';
+        return $output;
+    });
+
     /**
      * Create @img() Blade directives
      */
