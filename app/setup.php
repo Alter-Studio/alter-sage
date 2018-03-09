@@ -243,10 +243,12 @@ add_action('after_setup_theme', function () {
     sage('blade')->compiler()->directive('reponsiveImage', function ($expression) {
         $expression = strtr($expression, array('(' => '', ')' => ''));
         //Can probably auto generate src set?
+        //Will need to revist in the future
+        //Currently using small, medium and large
         //var_dump($expression['sizes']);
-        $output = '<div class="img--responsive" style="padding-bottom:'
-        $output .= "<?php echo get_field($expression)['sizes']['large-ratio'] ?>%"
-        $output .= " >';"
+        $output = '<div class="img--responsive" style="padding-bottom:';
+        $output .= "<?php echo get_field($expression)['sizes']['large-ratio'] ?>%";
+        $output .= " >';";
         $output .= '<img class="lazyload" data-sizes="auto" data-src="';
         $output .= "<?php echo get_field($expression)['sizes']['large']; ?>";
         $output .= '" data-srcset="';
