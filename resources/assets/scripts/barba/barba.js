@@ -77,7 +77,7 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 
 //Tag manager dispatcher
 // Barba.Dispatcher.on('initStateChange', function() {
-//   if (typeof ga !== 'function' || Barba.HistoryManager.history.length <= 1) {
+//   if (typeof gtag !== 'function' || Barba.HistoryManager.history.length <= 1) {
 //     return;
 //   }
 //   gtag('event', 'page_view', { 'send_to': trackingCode, 'page_path':  window.location.pathname });
