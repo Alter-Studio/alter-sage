@@ -150,13 +150,26 @@ Conditional statments
 
 Responsive Image
 The responsive image directive does not require any css to determine the padding based off the image ratio.
+This is built to work with [Lazysizes](https://github.com/aFarkas/lazysizes).
+
 - `@reponsiveImage`
 
 ```blade
 @reponsiveImage('imagefield')
 ```
 
-Images
+This currently only works for images that have the small, medium and large sizes.
+eg.
+```php
+get_field($expression)['sizes']['small']
+get_field($expression)['sizes']['medium']
+get_field($expression)['sizes']['large']
+```
+
+Non-responsive Images
+This is also built to work with [Lazysizes](https://github.com/aFarkas/lazysizes), however these images have css classes set to manage the padding.
+
+Regular Images
 - `@recImg`
 - `@squImg`
 - `@widImg`
