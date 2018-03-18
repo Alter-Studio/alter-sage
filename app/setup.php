@@ -238,14 +238,11 @@ add_action('after_setup_theme', function () {
 
 
     /**
-     * Create @reponsiveImage() Blade directive
+     * Create @responsiveImage() Blade directive
      */
-    sage('blade')->compiler()->directive('reponsiveImage', function ($expression) {
+     
+    sage('blade')->compiler()->directive('responsiveImage', function ($expression) {
         $expression = strtr($expression, array('(' => '', ')' => ''));
-        //Can probably auto generate src set?
-        //Will need to revist in the future
-        //Currently using small, medium and large
-        //var_dump($expression['sizes']);
         $output = '<div class="img--responsive" style="padding-bottom:';
         $output .= "<?php echo get_field($expression)['sizes']['large-ratio'] ?>%";
         $output .= " >';";
@@ -377,21 +374,6 @@ add_action('after_setup_theme', function () {
         return $output;
     });
 
-    sage('blade')->compiler()->directive('squTax', function ($expression) {
-        $term = get_queried_object();
-        $expression = strtr($expression, array('(' => '', ')' => ''));
-        $output = '<div class="ratio--squ">';
-        $output .= '<img class="lazyload" data-sizes="(min-width: 768px) 50vw, 100vw" data-src="';
-        $output .= "<?php echo get_field($expression, $term)['sizes']['squ-medium']; ?>";
-        $output .= '" data-srcset="';
-        $output .= "<?php echo get_field($expression, $term)['sizes']['squ-small']; ?> 800w,";
-        $output .= "<?php echo get_field($expression, $term)['sizes']['squ-medium']; ?> 1600w,";
-        $output .= "<?php echo get_field($expression, $term)['sizes']['squ-large']; ?> 1920w,";
-        $output .= '" />';
-        $output .= '</div>';
-        return $output;
-    });
-
     /**
      * Create @theGallery() Blade directive
      */
@@ -402,25 +384,17 @@ add_action('after_setup_theme', function () {
         $output .= 'as $image ):?>';
         $output .= '<div class="ratio--rec">';
         $output .= '<img class="lazyload" data-sizes="auto" data-src="';
-        $output .= '<?php echo $image["sizes"]["product-image"]; ?>';
+        $output .= '<?php echo $image["sizes"]["rec-small"]; ?>';
         $output .= '" data-srcset="';
         $output .= '<?php echo $image["sizes"]["rec-small"]; ?> 800w,';
-        $output .= '<?php echo $image["sizes"]["product-image"]; ?> 1000w,';
+        $output .= '<?php echo $image["sizes"]["rec-medium"]; ?> 1600w,';
         $output .= '" />';
         $output .= '</div>';
         $output .= '<?php endforeach; ?>';
         $output .= '<?php endif; ?>';
         return $output;
     });
-    // Started creating a 'trans' directive, not done yet
-    sage('blade')->compiler()->directive('trans', function ($expression) {
-        $expression = strtr($expression, array('(' => '', ')' => ''));
-        $output = "<?php if( have_rows('trans_terms' , 'option') ):";
-        $output .= "while( have_rows('trans_terms', 'option') ): the_row(); ?>";
-        $output .= "<?php echo the_sub_field($expression); ?>";
-        $output .= "<?php endwhile; endif; ?>";
-        return $output;
-    });
+
     // SVG Directive
     sage('blade')->compiler()->directive('icon', function ($expression) {
         $expression = preg_replace('/(\'|&#0*39;)/', '', $expression);

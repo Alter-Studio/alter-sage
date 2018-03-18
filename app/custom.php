@@ -5,7 +5,6 @@ function remove_default_image_sizes( $sizes) {
     unset( $sizes['thumbnail']);
     unset( $sizes['medium']);
     unset( $sizes['large']);
-
     return $sizes;
 }
 add_filter('intermediate_image_sizes_advanced', 'App\remove_default_image_sizes');
@@ -18,9 +17,6 @@ add_image_size( 'rec-small', 800, 500, true);
 add_image_size( 'rec-medium', 1600, 1000, true);
 add_image_size( 'rec-large', 1920, 1200, true);
 
-//product image (hard crop)
-add_image_size( 'product-image', 1000, 625, true);
-
 //squares (hard crop)
 add_image_size( 'squ-small', 800, 800, true );
 add_image_size( 'squ-medium', 1600, 1600, true );
@@ -32,19 +28,9 @@ add_image_size( 'wid-medium', 1600, 800, true );
 add_image_size( 'wid-large', 1920, 960, true );
 
 function my_acf_admin_head() { ?>
-
 	<style type="text/css">
-
-    .acf-field.acf-float-right{
-      float:right;
-    }
-
-    .acf-field-text{
-      min-height: 0px !important;
-    }
-
+    /* Styles for ACF Dashboard go here */
 	</style>
-
 <?php }
 add_action('acf/input/admin_head', 'App\my_acf_admin_head');
 
